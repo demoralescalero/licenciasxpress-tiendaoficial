@@ -377,7 +377,7 @@
       originalPricePen: 56.00,
       originalPriceUsd: 15.00,
       badge: "Canva",
-        description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños habilitado. Diseña sin límites con recursos premium para tus proyectos creativos.",
+        description: "Acceso a las herramientas pro de Canva edu por 1 mes, exportación e importación de diseños - habilitado, ideal para los que quieren dar el primer paso. Diseña sin límites con recursos premium para tus proyectos creativos.",
         images: [
           "./assets/Canvapor1mes.jpg",
           "https://play-lh.googleusercontent.com/CWLyk9s9V1xiIyy2DDFf62qgpYDp2Zg6BU9Eg4afT-2NFHxXSVbhZbe1atPX0vpjyaVTAF_UlZ96VAXrDb-u5w=w5120-h2880-rw",
@@ -394,8 +394,8 @@
         priceUsd: 5.99,
         originalPricePen: 140.00,
         originalPriceUsd: 41.50,
-        badge: "Canva",
-        description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños habilitado. Diseña sin límites con recursos premium para tus proyectos creativos.",
+        badge: "Oferta Popular",
+        description: "Acceso a las herramientas pro de Canva edu, exportación e importación de diseños - habilitado, el más económico para principiantes. Diseña sin límites con recursos premium para tus proyectos creativos.",
         images: [
           "./assets/Canvapor3meses.jpg",
           "https://play-lh.googleusercontent.com/CWLyk9s9V1xiIyy2DDFf62qgpYDp2Zg6BU9Eg4afT-2NFHxXSVbhZbe1atPX0vpjyaVTAF_UlZ96VAXrDb-u5w=w5120-h2880-rw",
@@ -412,8 +412,8 @@
         priceUsd: 10.50,
         originalPricePen: 210.00,
         originalPriceUsd: 62.50,
-        badge: "Canva",
-        description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños habilitado. Diseña sin límites con recursos premium para tus proyectos creativos.",
+        badge: "El favorito ",
+        description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños - habilitado, ideal para Estudiantes y/o Trabajadores. Diseña sin límites con recursos premium para tus proyectos creativos.",
         images: [
           "./assets/Canvapor6meses.jpg",
           "https://play-lh.googleusercontent.com/CWLyk9s9V1xiIyy2DDFf62qgpYDp2Zg6BU9Eg4afT-2NFHxXSVbhZbe1atPX0vpjyaVTAF_UlZ96VAXrDb-u5w=w5120-h2880-rw",
@@ -585,7 +585,7 @@ function getItemPrice(product) {
                 <img src="${p.images[0]}" alt="${p.name}" class="product-preview-img w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
 
                 <span class="canva-tag absolute left-3 top-3 bg-[#d9ff00] text-black px-2 py-1 text-xs font-bold uppercase tracking-wider">
-                  ${discountPercent ? `-${discountPercent}% OFF` : (p.badge || p.category)}
+                  ${p.badge || p.category}
                 </span>
 
                 <div class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 text-[10px] text-white flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
