@@ -368,15 +368,15 @@
     let currentCurrency = 'PEN';
 
     const PRODUCTS_DATABASE = [
-      {
-  id: "canva-pro-1",
-  name: "Canva Pro x 1 mes",
-  category: "Canva",
-  pricePen: 10.00,
-  priceUsd: 2.99,
-  originalPricePen: 56.00,  // <- Ahora sí se pintará: S/ 56.00 (-82%)
-  originalPriceUsd: 15.00,  // <- En dólares: $ 15.00 (-80%)
-  badge: "Oferta",
+     {
+      id: "canva-pro-1",
+      name: "Canva Pro x 1 mes",
+      category: "Canva",
+      pricePen: 10.00,
+      priceUsd: 2.99,
+      originalPricePen: 56.00,
+      originalPriceUsd: 15.00,
+      badge: "Canva",
         description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños habilitado. Diseña sin límites con recursos premium para tus proyectos creativos.",
         images: [
           "./assets/Canvapor1mes.jpg",
@@ -483,15 +483,31 @@
         ]
       }
     ];
-
-    function getItemPrice(product) {
-      if (currentCurrency === 'PEN') {
-        return product.pricePen || 0;
-      } else {
-        return product.priceUsd !== undefined ? product.priceUsd : ((product.pricePen || 0) / CONFIG.exchangeRate);
-      }
+      
+function getItemOriginalPrice(product) {
+  if (currentCurrency === 'PEN') {
+    return product.originalPricePen || null;
+  } else {
+    if (product.originalPriceUsd !== undefined) {
+      return product.originalPriceUsd;
     }
 
+    return product.originalPricePen
+      ? product.originalPricePen / CONFIG.exchangeRate
+      : null;
+  }
+}
+
+function getItemPrice(product) {
+  if (currentCurrency === 'PEN') {
+    return product.pricePen || 0;
+  } else {
+    return product.priceUsd !== undefined
+      ? product.priceUsd
+      : ((product.pricePen || 0) / CONFIG.exchangeRate);
+  }
+}
+    
     function formatPrice(amount) {
       return (currentCurrency === 'PEN' ? 'S/ ' : '$ ') + Number(amount).toFixed(2);
     }
