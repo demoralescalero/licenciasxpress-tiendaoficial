@@ -567,14 +567,23 @@ function getItemPrice(product) {
 
       grid.innerHTML = filtered.map(p => {
         const currentPrice = getItemPrice(p);
+        const originalPrice = getItemOriginalPrice(p);
+
+        const discountPercent =
+          originalPrice && originalPrice > currentPrice
+            ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
+            : 0;
+
         return `
           <article class="catalog-card overflow-hidden flex flex-col justify-between" data-id="${p.id}">
             <div>
               <div class="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900 group">
                 <img src="${p.images[0]}" alt="${p.name}" class="product-preview-img w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+
                 <span class="canva-tag absolute left-3 top-3 bg-[#d9ff00] text-black px-2 py-1 text-xs font-bold uppercase tracking-wider">
-                  ${p.badge || p.category}
+                  ${discountPercent ? `-${discountPercent}% OFF` : (p.badge || p.category)}
                 </span>
+
                 <div class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 text-[10px] text-white flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <span class="img-counter font-mono">1/${p.images.length}</span>
                 </div>
@@ -582,15 +591,46 @@ function getItemPrice(product) {
 
               <div class="p-5">
                 <h3 class="font-bold text-white text-base">${p.name}</h3>
-                <p class="mt-2 min-h-[48px] text-sm leading-relaxed text-neutral-400">${p.description}</p>
-                <p class="mt-5 font-extrabold text-lg text-[#d9ff00]">${formatPrice(currentPrice)}</p>
+
+                <p class="mt-2 min-h-[48px] text-sm leading-relaxed text-neutral-400">
+                  ${p.description}
+                </p>
+
+                <div class="mt-5">
+                  ${originalPrice && originalPrice > currentPrice ? `
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-sm font-semibold text-neutral-500 line-through">
+                        ${formatPrice(originalPrice)}
+                      </span>
+
+                      <span class="text-[10px] font-black bg-red-950/80 border border-red-500/50 text-red-400 px-1.5 py-0.5 uppercase">
+                        -${discountPercent}%
+                      </span>
+                    </div>
+                  ` : ''}
+
+                  <p class="font-extrabold text-lg text-[#d9ff00]">
+                    ${formatPrice(currentPrice)}
+                  </p>
+                </div>
               </div>
             </div>
 
             <div class="px-5 pb-5 pt-0">
               <div class="mt-2 flex gap-3">
-                <input type="number" min="1" max="99" value="1" class="qty-input w-16 border border-neutral-700 bg-black px-2 py-2 text-center font-semibold text-white focus:border-[#d9ff00] focus:outline-none">
-                <button type="button" class="btn-add-to-cart flex-1 bg-white hover:bg-[#d9ff00] text-black font-bold text-sm py-2 px-3 transition-colors" data-id="${p.id}">
+                <input
+                  type="number"
+                  min="1"
+                  max="99"
+                  value="1"
+                  class="qty-input w-16 border border-neutral-700 bg-black px-2 py-2 text-center font-semibold text-white focus:border-[#d9ff00] focus:outline-none"
+                >
+
+                <button
+                  type="button"
+                  class="btn-add-to-cart flex-1 bg-white hover:bg-[#d9ff00] text-black font-bold text-sm py-2 px-3 transition-colors"
+                  data-id="${p.id}"
+                >
                   Agregar
                 </button>
               </div>
