@@ -368,15 +368,15 @@
     let currentCurrency = 'PEN';
 
     const PRODUCTS_DATABASE = [
-    {
-      id: "canva-pro-1",
-      name: "Canva Pro x 1 mes",
-      category: "Canva",
-      pricePen: 10.00,
-      priceUsd: 2.99,
-      originalPricePen: 56.00,
-      originalPriceUsd: 15.00,
-      badge: "-82% OFF",
+      {
+  id: "canva-pro-1",
+  name: "Canva Pro x 1 mes",
+  category: "Canva",
+  pricePen: 10.00,
+  priceUsd: 2.99,
+  originalPricePen: 56.00,  // <- Ahora sí se pintará: S/ 56.00 (-82%)
+  originalPriceUsd: 15.00,  // <- En dólares: $ 15.00 (-80%)
+  badge: "Oferta",
         description: "Acceso a las herramientas pro de Canva, exportación e importación de diseños habilitado. Diseña sin límites con recursos premium para tus proyectos creativos.",
         images: [
           "./assets/Canvapor1mes.jpg",
